@@ -36,6 +36,8 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor"
+
+	"github.rbx.com/Roblox/tracing-proxy/rblxprocessor"
 )
 
 func TestDefaultProcessors(t *testing.T) {
@@ -122,6 +124,13 @@ func TestDefaultProcessors(t *testing.T) {
 			getConfigFn: func() component.Config {
 				cfg := procFactories["span"].CreateDefaultConfig().(*spanprocessor.Config)
 				cfg.Rename.FromAttributes = []string{"test-key"}
+				return cfg
+			},
+		},
+		{
+			processor: "rblx",
+			getConfigFn: func() component.Config {
+				cfg := procFactories["rblx"].CreateDefaultConfig().(*rblxprocessor.Config)
 				return cfg
 			},
 		},

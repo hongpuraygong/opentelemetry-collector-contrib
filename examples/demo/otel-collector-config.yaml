@@ -20,8 +20,16 @@ exporters:
     tls:
       insecure: true
 
+  otlphttp/satellite:
+    traces_endpoint: "http://host.docker.internal:8360/traces/otlp/v0.6"
+    headers:
+      "lightstep-access-token": "eyJhbGciOiJIUzI1NiIsImtpZCI6IjIwMTktMDMtMDEiLCJ0eXAiOiJKV1QifQ.eyJzY29wZSI6eyJjb2xsZWN0b3IiOnsicmVhZHdyaXRlIjp0cnVlfSwiZGV2bW9kZSI6eyJyZWFkd3JpdGUiOnRydWV9fSwiYXVkX2lkIjoieXp6cW54YWlvYnRyMnZjNDZ3YnU0Zms1eHN3c2xjNW1lNjZrcGRkcmloaW90N2t2IiwidXNlcl9pZCI6MTMyNTAwLCJhdWQiOiJSb2Jsb3giLCJleHAiOjE3MDg2MzkyMTAsImp0aSI6InloemI2N2M0Y3gzaGd6ZWJqbWZreXBtNmQ0NjJtbW5ya3duZ2xmNzV3bzRwM3pmZyIsImlhdCI6MTY3NzEwMzIxMCwiaXNzIjoibGlnaHRzdGVwLmNvbSJ9.LHNTXXNsExEEr5J-RrpqVfKF1nu3IgFxGBUllnv4VXY"
+
+
 processors:
   batch:
+  rblx:
+    key: anotherkey
 
 extensions:
   health_check:
@@ -35,8 +43,8 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch]
-      exporters: [logging, zipkin, jaeger]
+      processors: [batch, rblx]
+      exporters: [logging, zipkin, jaeger, otlphttp/satellite]
     metrics:
       receivers: [otlp]
       processors: [batch]

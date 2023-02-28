@@ -104,6 +104,7 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/servicegraphprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanmetricsprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor"
+	"github.rbx.com/Roblox/tracing-proxy/rblxprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/activedirectorydsreceiver"
@@ -376,11 +377,15 @@ func Components() (otelcol.Factories, error) {
 		servicegraphprocessor.NewFactory(),
 		spanmetricsprocessor.NewFactory(),
 		spanprocessor.NewFactory(),
+		rblxprocessor.NewFactory(),
 		cumulativetodeltaprocessor.NewFactory(),
 		datadogprocessor.NewFactory(),
 		deltatorateprocessor.NewFactory(),
 		transformprocessor.NewFactory(),
 	}
+
+	temp := rblxprocessor.NewFactory()
+	temp.Type()
 	factories.Processors, err = processor.MakeFactoryMap(processors...)
 	if err != nil {
 		return otelcol.Factories{}, err

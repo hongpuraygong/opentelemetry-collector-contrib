@@ -80,6 +80,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/servicegraphprocessor v0.72.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanmetricsprocessor v0.72.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor v0.72.0
+	github.rbx.com/Roblox/tracing-proxy/rblxprocessor v0.72.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor v0.72.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.72.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/activedirectorydsreceiver v0.72.0
@@ -682,6 +683,8 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/receiver/splun
 replace github.com/open-telemetry/opentelemetry-collector-contrib/receiver/collectdreceiver => ../../receiver/collectdreceiver
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor => ../../processor/spanprocessor
+
+replace github.rbx.com/Roblox/tracing-proxy/rblxprocessor => ../../processor/rblxprocessor
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/extension/awsproxy => ../../extension/awsproxy
 
